@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class CalculatorController {
 
     @Autowired
-    CalculateService calcSevice;
+    CalculateService calculateService;
+
     @GetMapping("/add/{first}/{second}")
     public double add(@PathVariable("first") double first,
                         @PathVariable("second") double second){
-        return calcSevice.add(first, second);
+        return calculateService.add(first, second);
     }
 
     @GetMapping("/divide/{first}/{second}")
@@ -29,7 +30,7 @@ public class CalculatorController {
             return new ResponseEntity<>("DIVIDE BY ZERO IS NOT APPLICABLE, PLEASE CHECK THE INPUT",
                                             HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(calcSevice.divide(first, second), HttpStatus.OK);
+        return new ResponseEntity<>(calculateService.divide(first, second), HttpStatus.OK);
     }
 
 }
